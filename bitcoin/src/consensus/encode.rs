@@ -25,10 +25,12 @@ use crate::bip152::{PrefilledTransaction, ShortId};
 use crate::blockdata::transaction::{Transaction, TxIn, TxOut};
 use crate::hash_types::{BlockHash, FilterHash, FilterHeader, TxMerkleNode};
 use crate::io::{self, Cursor, Read};
+use crate::p2p::utreexo::CompactLeafData;
 #[cfg(feature = "std")]
 use crate::p2p::{
     address::{AddrV2Message, Address},
     message_blockdata::Inventory,
+    utreexo::UtreexoBlock
 };
 use crate::prelude::*;
 use crate::taproot::TapLeafHash;
@@ -634,6 +636,8 @@ impl_vec!(TapLeafHash);
 impl_vec!(VarInt);
 impl_vec!(ShortId);
 impl_vec!(PrefilledTransaction);
+impl_vec!(UtreexoBlock);
+impl_vec!(CompactLeafData);
 
 #[cfg(feature = "std")]
 impl_vec!(Inventory);

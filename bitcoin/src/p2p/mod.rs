@@ -21,6 +21,8 @@ pub mod message_compact_blocks;
 pub mod message_filter;
 #[cfg(feature = "std")]
 pub mod message_network;
+#[cfg(feature = "std")]
+pub mod utreexo;
 
 use core::convert::TryFrom;
 use core::str::FromStr;
