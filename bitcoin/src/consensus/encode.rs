@@ -35,9 +35,6 @@ use crate::p2p::{
 use crate::prelude::*;
 use crate::taproot::TapLeafHash;
 
-#[cfg(feature = "serde")]
-use actual_serde::{Deserialize, Serialize};
-
 /// Encoding error.
 #[derive(Debug)]
 #[non_exhaustive]
@@ -377,9 +374,10 @@ pub trait Decodable: Sized {
 }
 
 #[cfg(feature = "serde")]
-use actual_serde;
+use internals::serde::{Serialize, Deserialize};
 /// A variable-length unsigned integer.
-#[cfg_attr(feature = "serde", derive(actual_serde::Serialize, actual_serde::Deserialize))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[serde(crate = "actual_serde")]
 #[derive(PartialEq, Eq, PartialOrd, Ord, Clone, Debug)]
 pub struct VarInt(pub u64);
 
