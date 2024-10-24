@@ -23,6 +23,8 @@ use crate::{Block, VarInt};
 /// to save bandwidth. If the type is recoverable from the scriptSig, don't download the
 /// scriptPubkey.
 #[derive(PartialEq, Eq, Clone, Debug)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[cfg_attr(feature = "serde", serde(crate = "actual_serde"))]
 pub struct CompactLeafData {
     /// Header code tells the height of creating for this UTXO and whether it's a coinbase
     pub header_code: u32,
@@ -37,6 +39,8 @@ pub struct CompactLeafData {
 /// grab it and hash to obtain the actual scriptPubkey. Since this data is committed in
 /// the Utreexo leaf hash, it is still authenticated
 #[derive(PartialEq, Eq, Clone, Debug)]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[cfg_attr(feature = "serde", serde(crate = "actual_serde"))]
 pub enum ScriptPubkeyType {
     /// An non-specified type, in this case the script is just copied over
     Other(Box<[u8]>),
